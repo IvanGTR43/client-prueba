@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+.home {
+  margin: 0;
+}
+.home h1 {
+  color: white;
+  text-align: center;
+}
+.row {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.products {
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+.addProducts {
+  background-color: white;
+}
+
+#final {
+  padding-top: 20px;
+  background-color: aliceblue;
+}
+#card {
+  flex-direction: row-reverse;
+
+  display: flex;
+  margin-right: 40px;
+  marker-start: 20px;
+}
+
+#card h4 {
+  text-align: center;
+}
+#card p {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+}

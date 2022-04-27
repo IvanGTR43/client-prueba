@@ -1,0 +1,30 @@
+.product {
+  width: 100%;
+}
+
+.buttonFile {
+  flex-direction: row;
+}
+.buttonFile button {
+  text-transform: uppercase;
+  outline: 0;
+  margin-left: 5px;
+  border: 0;
+  padding: 15px;
+  padding-bottom: 15px;
+  color: #ffffff;
+  font-size: 14px;
+
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.buttonFile .delete {
+  color: red;
+}
+.buttonFile .update {
+  color: blue;
+}
+.buttonFile .buy {
+  color: #4caf50;
+}
