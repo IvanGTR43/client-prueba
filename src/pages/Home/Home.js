@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardBody, CardFooter, Button } from "@react-ui-org/react-ui";
+import { Row, Col, Card } from "antd";
 
 import {
   getProductsApi,
@@ -56,14 +56,12 @@ const Home = () => {
         </div>
       </div>
       <div className="row" id="final">
+        <h3>Productos Comprados</h3>
         {shop.map((item, inex) => (
-          <>
-            <div id="card">
-              <img src={item.image} alt={item.name} style={{ width: "40px" }} />
-              <h4>{item.name}</h4>
-              <p>{item.description}</p>
-            </div>
-          </>
+          <div className="bought">
+            <h4>{item.name}</h4>
+            <p>{item.description}</p>
+          </div>
         ))}
       </div>
     </div>

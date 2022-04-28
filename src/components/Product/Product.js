@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { deleteProductpApi, updateProductApi } from "../../api/product";
 import { getAccessTokenApi } from "../../api/auth";
-import { Modal } from "@react-ui-org/react-ui";
+import { Modal, Button, Card, Col, Row } from "antd";
 
 import "./Product.css";
 
@@ -60,21 +60,12 @@ function Product({ item, setRefresh, setShop, shop }) {
         </div>
       </div>
       <div>
-        {modalOpen && (
-          <Modal
-            __background={{
-              color: "#fff",
-            }}
-            actions={[
-              {
-                color: "danger",
-                label: "Delete",
-                onClick: () => setModalOpen(false),
-              },
-            ]}
-            onClose={() => setModalOpen(false)}
-            title="Actualizar"
-          >
+        <Modal
+          visible={modalOpen}
+          onCancel={() => setModalOpen(false)}
+          title="Actualizar"
+        >
+          <div className="modal">
             <form>
               <input
                 required
@@ -94,8 +85,8 @@ function Product({ item, setRefresh, setShop, shop }) {
                 Agregar Producto
               </button>
             </form>
-          </Modal>
-        )}
+          </div>
+        </Modal>
       </div>
     </>
   );

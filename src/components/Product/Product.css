@@ -28,3 +28,7 @@
 .buttonFile .buy {
   color: #4caf50;
 }
+.modal {
+  background-color: white;
+  margin: 30px;
+}

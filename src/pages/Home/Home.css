@@ -31,13 +31,6 @@
   padding-top: 20px;
   background-color: aliceblue;
 }
-#card {
-  flex-direction: row-reverse;
-
-  display: flex;
-  margin-right: 40px;
-  marker-start: 20px;
-}
 
 #card h4 {
   text-align: center;
@@ -46,6 +39,27 @@
   text-align: center;
 }
 
+#final {
+  padding: 30px;
+  background: #ececec;
+  padding: 30px;
+}
+.row h3 {
+  text-align: center;
+}
+
+.bought {
+  padding: 20px;
+  border: 2;
+}
+.bought h4 {
+  text-align: center;
+  padding: 10px;
+}
+
+.bought p {
+  text-align: center;
+}
 @media screen and (max-width: 700px) {
   .row {
     flex-direction: column;
