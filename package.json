@@ -1,7 +1,6 @@
 {
   "name": "client-ivan",
   "version": "0.1.0",
-  "homepage": "https://ivangtr43.github.io/client-prueba",
   "private": true,
   "dependencies": {
     "@react-ui-org/react-ui": "^0.45.0",
@@ -42,5 +41,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "https://sage-dragon-a7992e.netlify.app"
 }

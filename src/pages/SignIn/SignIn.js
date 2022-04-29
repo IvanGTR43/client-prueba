@@ -4,7 +4,7 @@ import { getAccessTokenApi } from "../../api/auth";
 import { signInApi } from "../../api/user";
 import { signUpApi } from "../../api/user";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../utils/constant";
-import { validataEmail } from "../../utils/validateMail";
+//import { validataEmail } from "../../utils/validateMail";
 
 import Form from "../../components/FormLogin/Form";
 import "./SignIn.css";
@@ -18,10 +18,6 @@ const SignIn = () => {
   const [loginMode, setLoginMode] = useState(true);
   const [errorEmail, seterrorEmail] = useState("");
   const [errorPassword, seterrorPassword] = useState("");
-
-  if (getAccessTokenApi()) {
-    window.location.href = "/";
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -11,7 +11,7 @@ export async function getProductsApi() {
   }
 }
 
-export function deleteProductpApi(token, id) {
+export async function deleteProductpApi(token, id) {
   const url = `${BASE_PATH}/${API_VERSION}/delete-product/${id}`;
   const params = {
     method: "DELETE",
@@ -20,18 +20,15 @@ export function deleteProductpApi(token, id) {
       Authorization: token,
     },
   };
-  return fetch(url, params)
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      return result;
-    })
-    .catch((err) => {
-      return err;
-    });
+  try {
+    const response = await fetch(url, params);
+    const result_1 = await response.json();
+    return result_1;
+  } catch (err) {
+    return err;
+  }
 }
-export function addProductApi(token, product) {
+export async function addProductApi(token, product) {
   const url = `${BASE_PATH}/${API_VERSION}/add-product`;
   const params = {
     method: "POST",
@@ -41,19 +38,16 @@ export function addProductApi(token, product) {
     },
     body: JSON.stringify(product),
   };
-  return fetch(url, params)
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      return result;
-    })
-    .catch((err) => {
-      return err;
-    });
+  try {
+    const response = await fetch(url, params);
+    const result_1 = await response.json();
+    return result_1;
+  } catch (err) {
+    return err;
+  }
 }
 
-export function updateProductApi(token, id, product) {
+export async function updateProductApi(token, id, product) {
   const url = `${BASE_PATH}/${API_VERSION}/update-product/${id}`;
   const params = {
     method: "PUT",
@@ -63,33 +57,27 @@ export function updateProductApi(token, id, product) {
     },
     body: JSON.stringify(product),
   };
-  return fetch(url, params)
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      return result;
-    })
-    .catch((err) => {
-      return err;
-    });
+  try {
+    const response = await fetch(url, params);
+    const result_1 = await response.json();
+    return result_1;
+  } catch (err) {
+    return err;
+  }
 }
 
-export function getProductApi(id) {
+export async function getProductApi(id) {
   const url = `${BASE_PATH}/${API_VERSION}/get-product/${id}`;
-  return fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      return result;
-    })
-    .catch((err) => {
-      return err;
-    });
+  try {
+    const response = await fetch(url);
+    const result_1 = await response.json();
+    return result_1;
+  } catch (err) {
+    return err;
+  }
 }
 
-export function uploadImageApi(token, image, userId) {
+export async function uploadImageApi(token, image, userId) {
   const url = `${BASE_PATH}/${API_VERSION}/upload-image/${userId}`;
   const formData = new FormData();
   formData.append("image", image, image.name);
@@ -101,26 +89,22 @@ export function uploadImageApi(token, image, userId) {
     },
   };
 
-  return fetch(url, params)
-    .then((response) => {
-      return response.json();
-    })
-    .then((result) => {
-      return result;
-    })
-    .catch((err) => {
-      return err.message;
-    });
+  try {
+    const response = await fetch(url, params);
+    const result_1 = await response.json();
+    return result_1;
+  } catch (err) {
+    return err.message;
+  }
 }
 
-export function getImageApi(imageName) {
+export async function getImageApi(imageName) {
   const url = `${BASE_PATH}/${API_VERSION}/get-image/${imageName}`;
 
-  return fetch(url)
-    .then((response) => {
-      return response.url;
-    })
-    .catch((err) => {
-      return err.message;
-    });
+  try {
+    const response = await fetch(url);
+    return response.url;
+  } catch (err) {
+    return err.message;
+  }
 }

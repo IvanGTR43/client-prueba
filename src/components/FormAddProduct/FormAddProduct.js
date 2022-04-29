@@ -17,7 +17,6 @@ function FormAddProduct() {
   });
   const [imageProduct, setImageProduct] = useState(null);
 
-  console.log(imageProduct);
   useEffect(() => {
     if (imageProduct != null) {
       setProduct({ ...product, url: imageProduct.file });
@@ -34,8 +33,8 @@ function FormAddProduct() {
     })
       .then((response) => {
         console.log(response.message);
-        let idUSer = response.product._id;
-        console.log(idUSer);
+        // let idUSer = response.product._id;
+        // console.log(idUSer);
         // Ahora a subir la image
         // if (typeof imageProduct.file === "object") {
         //   uploadImageApi(token, imageProduct.file, idUSer)

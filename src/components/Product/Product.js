@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { deleteProductpApi, updateProductApi } from "../../api/product";
 import { getAccessTokenApi } from "../../api/auth";
-import { Modal, Button, Card, Col, Row } from "antd";
+
+//import Modal from "../Modal/Modal";
+import { Modal } from "antd";
 
 import "./Product.css";
 
-function Product({ item, setRefresh, setShop, shop }) {
+function Product(props) {
+  const { item, setRefresh, setShop, shop, newData, setNewData, handleSubmit } =
+    props;
   const { url, name, description, _id } = item;
-  const [modalOpen, setModalOpen] = useState(false);
-  const [newData, setnewData] = useState({});
 
   const deleteProduct = () => {
     const token = getAccessTokenApi();
@@ -23,23 +25,35 @@ function Product({ item, setRefresh, setShop, shop }) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let token = getAccessTokenApi();
-    updateProductApi(token, newData, _id)
-      .then((response) => {
-        if (response.code === 200) {
-          alert(response.code);
-        } else {
-          console.log(response.code);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   const buyProduct = () => {
     setShop([...shop, item]);
+  };
+  const info = () => {
+    Modal.info({
+      title: "This is a notification message",
+      content: (
+        <div className="modal">
+          <form>
+            <input
+              required
+              placeholder="Nuevo Nombre"
+              onClick={(e) => setNewData({ ...newData, name: e.target.value })}
+            />
+            <input
+              required
+              placeholder="Nueva Descripcion"
+              onChange={(e) =>
+                setNewData({ ...newData, description: e.target.value })
+              }
+            />
+            <button type="submit" onClick={(e) => handleSubmit(e, item._id)}>
+              Actualizar Producto
+            </button>
+          </form>
+        </div>
+      ),
+      //onOk() {},
+    });
   };
   return (
     <>
@@ -51,42 +65,13 @@ function Product({ item, setRefresh, setShop, shop }) {
           <button onClick={(e) => deleteProduct()} className="delete">
             Eliminar
           </button>
-          <button onClick={() => setModalOpen(true)} className="update">
+          <button onClick={() => info()} className="update">
             Actualizar
           </button>
           <button className="buy" onClick={buyProduct}>
             Comprar
           </button>
         </div>
-      </div>
-      <div>
-        <Modal
-          visible={modalOpen}
-          onCancel={() => setModalOpen(false)}
-          title="Actualizar"
-        >
-          <div className="modal">
-            <form>
-              <input
-                required
-                placeholder="Nuevo NOmbre"
-                onChange={(e) =>
-                  setnewData({ ...newData, name: e.target.value })
-                }
-              />
-              <input
-                required
-                placeholder="Nueva Descripcion"
-                onChange={(e) =>
-                  setnewData({ ...newData, description: e.target.value })
-                }
-              />
-              <button type="submit" onClick={(e) => handleSubmit(e)}>
-                Agregar Producto
-              </button>
-            </form>
-          </div>
-        </Modal>
       </div>
     </>
   );

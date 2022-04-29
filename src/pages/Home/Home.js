@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card } from "antd";
+import { getAccessTokenApi } from "../../api/auth";
+import { updateProductApi } from "../../api/product";
 
-import {
-  getProductsApi,
-  addProductApi,
-  uploadImageApi,
-} from "../../api/product";
+import { getProductsApi, addProductApi } from "../../api/product";
 
 import FormAddProduct from "../../components/FormAddProduct/FormAddProduct";
 import Product from "../../components/Product/Product";
@@ -20,7 +18,15 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [shop, setShop] = useState([]);
-  console.log(shop);
+
+  const [newData, setNewData] = useState({
+    name: "",
+    description: "",
+  });
+
+  // if (!getAccessTokenApi()) {
+  //   window.location.href = "/login";
+  // }
 
   useEffect(() => {
     getProductsApi()
@@ -36,6 +42,21 @@ const Home = () => {
     setRefresh(false);
   }, [refresh]);
 
+  const handleSubmit = (e, _id) => {
+    e.preventDefault();
+    let token = getAccessTokenApi();
+    updateProductApi(token, newData, _id)
+      .then((response) => {
+        if (response.code === 200) {
+          alert(response.code);
+        } else {
+          console.log(response.code);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="home">
       <h1>Agregar Productos y Comprarlos</h1>
@@ -48,9 +69,12 @@ const Home = () => {
             <Product
               item={item}
               setRefresh={setRefresh}
-              key={index}
+              key={Math.random().toString()}
               setShop={setShop}
               shop={shop}
+              handleSubmit={handleSubmit}
+              newData={newData}
+              setNewData={setNewData}
             />
           ))}
         </div>
