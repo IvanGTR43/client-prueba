@@ -52,7 +52,7 @@ function FormAddProduct() {
         //       console.log(err);
         //     });
         // }
-        alert(response.mesage);
+        alert(response.message);
       })
       .catch((err) => {
         alert(err);

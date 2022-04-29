@@ -17,7 +17,7 @@ function Product(props) {
     deleteProductpApi(token, _id).then((response) => {
       console.log(response);
       if (response.code === 200) {
-        alert(response.code);
+        alert(response.message);
         setRefresh(true);
       } else {
         alert("No se Pudo Eliminar, intenta mas tarde");
@@ -37,7 +37,7 @@ function Product(props) {
             <input
               required
               placeholder="Nuevo Nombre"
-              onClick={(e) => setNewData({ ...newData, name: e.target.value })}
+              onChange={(e) => setNewData({ ...newData, name: e.target.value })}
             />
             <input
               required
@@ -59,8 +59,8 @@ function Product(props) {
     <>
       <div className="product">
         <img src={url} style={{ width: "50px" }} alt={`imagen de ${name}`} />
-        <h4>{name}</h4>
-        <p>{description}</p>
+        <h4>Nombre: {name}</h4>
+        <p>Descripcion: {description}</p>
         <div className="buttonFile">
           <button onClick={(e) => deleteProduct()} className="delete">
             Eliminar

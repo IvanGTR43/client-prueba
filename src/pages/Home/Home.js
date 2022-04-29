@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Card } from "antd";
-import { getAccessTokenApi } from "../../api/auth";
-import { updateProductApi } from "../../api/product";
 
-import { getProductsApi, addProductApi } from "../../api/product";
+import { getAccessTokenApi } from "../../api/auth";
+
+import { getProductsApi, updateProductApi } from "../../api/product";
 
 import FormAddProduct from "../../components/FormAddProduct/FormAddProduct";
 import Product from "../../components/Product/Product";
@@ -23,6 +22,7 @@ const Home = () => {
     name: "",
     description: "",
   });
+  console.log(newData);
 
   // if (!getAccessTokenApi()) {
   //   window.location.href = "/login";
@@ -44,11 +44,15 @@ const Home = () => {
 
   const handleSubmit = (e, _id) => {
     e.preventDefault();
+
     let token = getAccessTokenApi();
-    updateProductApi(token, newData, _id)
+
+    updateProductApi(token, _id, newData)
       .then((response) => {
         if (response.code === 200) {
-          alert(response.code);
+          alert(response.message);
+
+          setRefresh(true);
         } else {
           console.log(response.code);
         }
@@ -83,8 +87,8 @@ const Home = () => {
         <h3>Productos Comprados</h3>
         {shop.map((item, inex) => (
           <div className="bought">
-            <h4>{item.name}</h4>
-            <p>{item.description}</p>
+            <h4>Nombre: {item.name}</h4>
+            <p>Descripcion: {item.description}</p>
           </div>
         ))}
       </div>

@@ -57,6 +57,7 @@ export async function updateProductApi(token, id, product) {
     },
     body: JSON.stringify(product),
   };
+
   try {
     const response = await fetch(url, params);
     const result_1 = await response.json();
